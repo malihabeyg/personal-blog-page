@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavender Letters | Professional Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ffb6c1; /* Baby pink */
+            --secondary: #f8c8dc; /* Light pink */
+            --accent: #d8bfd8; /* Lilac */
+            --dark: #9370db; /* Purple */
+            --light: #fff5f5; /* Very light pink */
+            --text: #4a4a4a;
+            --text-light: #888;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--light);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Controls Section */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: var(--secondary);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 50px;
+            padding: 8px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            width: 300px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 8px;
+            width: 100%;
+            font-size: 1rem;
+            background: transparent;
+        }
+
+        .search-box i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .toggle-btn {
+            padding: 10px 15px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: var(--dark);
+            color: white;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-category {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .card-excerpt {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-date {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .card-date i {
+            margin-right: 5px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .pagination-btn {
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn.active, .pagination-btn:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        .subscribe input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .subscribe button {
+            background: white;
+            color: var(--dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe button:hover {
+            background: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-header {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Page */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(216, 191, 216, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .category-filter {
+                justify-content: center;
+            }
+            
+            .view-toggle {
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-pen-fancy"></i>
+                    <span>Lavender Letters</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-section="categories">Categories</a></li>
+                        <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="page-section active">
+            <!-- Controls Section -->
+            <div class="controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search posts...">
+                </div>
+                
+                <div class="category-filter">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="tech">Tech</button>
+                    <button class="filter-btn" data-category="travel">Travel</button>
+                    <button class="filter-btn" data-category="food">Food</button>
+                    <button class="filter-btn" data-category="lifestyle">Lifestyle</button>
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="toggle-btn active" id="grid-view"><i class="fas fa-th"></i></button>
+                    <button class="toggle-btn" id="list-view"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div class="blog-grid" id="blog-container">
+                <!-- Blog posts will be dynamically inserted here -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be dynamically inserted here -->
+            </div>
+        </section>
+
+     
+        <!-- Categories Section -->
+        <section id="categories" class="page-section">
+            <div class="section-header">
+                <h2>Blog Categories</h2>
+                <p>Explore posts by category to find exactly what you're looking for</p>
+            </div>
+
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Technology">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Tech</span>
+                        <h2 class="card-title">Technology Trends</h2>
+                        <p class="card-excerpt">Explore the latest in technology, apps, and digital innovation that's shaping our world.</p>
+                        <a href="#" class="filter-btn" style="display: inline-block; margin-top: 10px;" data-category="tech">View Posts</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1335&q=80" alt="Travel">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Travel</span>
+                        <h2 class="card-title">Wanderlust</h2>
+                        <p class="card-excerpt">Join me as I explore destinations near and far, with travel tips and cultural insights.</p>
+                        <a href="#" class="filter-btn" style="display: inline-block; margin-top: 10px;" data-category="travel">View Posts</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" alt="Food">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">Food</span>
+                        <h2 class="card-title">Culinary Delights</h2>
+                        <p class="card-excerpt">Recipes, restaurant reviews, and food experiences from my kitchen and beyond.</p>
+                        <a href="#" class="filter-btn" style="display: inline-block; margin-top: 10px;" data-category="food">View Posts</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>I'd love to hear from you! Send me a message using the form below</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> Email: hello@lavenderletters.com</p>
+                        <p><i class="fas fa-phone"></i> Phone: +92 3123456789</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Address: E-Street, Karachi</p>
+                    </div>
+
+                    
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    
+                </div>
+
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Lavender Letters</h3>
+                    <p>A professional yet personal blog sharing thoughts on technology, travel, food, and lifestyle with a creative touch.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-section="categories">Categories</a></li>
+                        <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Subscribe</h3>
+                    <p>Stay updated with the latest posts</p>
+                    <div class="subscribe">
+                        <input type="email" placeholder="Your email address">
+                        <button>Subscribe</button>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lavender Letters. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample blog data with 2025 dates
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Getting Started with React Hooks",
+                category: "tech",
+                excerpt: "Learn how to use React Hooks to simplify your functional components and manage state effectively.",
+                date: "March 15, 2025",
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 2,
+                title: "My Trip to Bali: Paradise Found",
+                category: "travel",
+                excerpt: "Exploring the beautiful island of Bali - from stunning beaches to ancient temples and vibrant culture.",
+                date: "February 10, 2025",
+                image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 3,
+                title: "The Perfect Chocolate Chip Cookie Recipe",
+                category: "food",
+                excerpt: "After years of experimentation, I've finally created the ultimate chocolate chip cookie recipe.",
+                date: "January 5, 2025",
+                image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80"
+            },
+            {
+                id: 5,
+                title: "Introduction to Web Accessibility",
+                category: "tech",
+                excerpt: "Making your websites accessible to everyone is not just important - it's essential. Here's how to get started.",
+                date: "April 22, 2025",
+                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+            },
+            {
+                id: 6,
+                title: "Hiking the Swiss Alps",
+                category: "travel",
+                excerpt: "My incredible journey through the breathtaking landscapes of the Swiss Alps last summer.",
+                date: "March 15, 2025",
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 7,
+                title: "Vegan Breakfast Ideas",
+                category: "food",
+                excerpt: "Delicious and nutritious vegan breakfast recipes to start your day right.",
+                date: "February 8, 2025",
+                image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 8,
+                title: "Morning Routine for Productivity",
+                category: "lifestyle",
+                excerpt: "How I transformed my mornings to maximize productivity and set a positive tone for the day.",
+                date: "January 1, 2025",
+                image: "https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            }
+        ];
+
+        // App state
+        let currentPage = 1;
+        const postsPerPage = 6;
+        let currentCategory = 'all';
+        let currentSearchTerm = '';
+        let isGridView = true;
+
+        // DOM Elements
+        const blogContainer = document.getElementById('blog-container');
+        const paginationElement = document.getElementById('pagination');
+        const searchInput = document.getElementById('search-input');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const viewToggleButtons = document.querySelectorAll('.toggle-btn');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageSections = document.querySelectorAll('.page-section');
+
+        // Initialize the blog
+        function initBlog() {
+            renderBlogPosts();
+            setupEventListeners();
+        }
+
+        // Filter posts based on category and search term
+        function getFilteredPosts() {
+            return blogPosts.filter(post => {
+                const matchesCategory = currentCategory === 'all' || post.category === currentCategory;
+                const matchesSearch = post.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+                                    post.excerpt.toLowerCase().includes(currentSearchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        // Render blog posts based on current filters and page
+        function renderBlogPosts() {
+            const filteredPosts = getFilteredPosts();
+            const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+            
+            // Ensure current page is valid
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+            
+            // Calculate posts to show
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const postsToShow = filteredPosts.slice(startIndex, startIndex + postsPerPage);
+            
+            // Clear container
+            blogContainer.innerHTML = '';
+            
+            // Render posts
+            if (postsToShow.length === 0) {
+                blogContainer.innerHTML = `
+                    <div class="no-posts" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+                        <h2 style="color: var(--dark);">No posts found</h2>
+                        <p style="color: var(--text-light);">Try changing your search criteria or category filter</p>
+                    </div>
+                `;
+            } else {
+                postsToShow.forEach(post => {
+                    const postElement = document.createElement('article');
+                    postElement.className = 'blog-card';
+                    postElement.innerHTML = `
+                        <div class="card-img">
+                            <img src="${post.image}" alt="${post.title}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-category">${post.category}</span>
+                            <h2 class="card-title">${post.title}</h2>
+                            <p class="card-excerpt">${post.excerpt}</p>
+                            <div class="card-date">
+                                <i class="far fa-calendar"></i>
+                                <span>${post.date}</span>
+                            </div>
+                        </div>
+                    `;
+                    blogContainer.appendChild(postElement);
+                });
+            }
+            
+            // Render pagination
+            renderPagination(totalPages);
+            
+            // Apply view mode
+            if (isGridView) {
+                blogContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+            } else {
+                blogContainer.style.gridTemplateColumns = '1fr';
+            }
+        }
+
+        // Render pagination buttons
+        function renderPagination(totalPages) {
+            paginationElement.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+            
+            // Previous button
+            const prevButton = document.createElement('button');
+            prevButton.className = 'pagination-btn';
+            prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderBlogPosts();
+                }
+            });
+            paginationElement.appendChild(prevButton);
+            
+            // Page buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;                    renderBlogPosts();
+                });
+                paginationElement.appendChild(pageButton);
+            }
+            
+            // Next button
+            const nextButton = document.createElement('button');
+            nextButton.className = 'pagination-btn';
+            nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderBlogPosts();
+                }
+            });
+            paginationElement.appendChild(nextButton);
+        }
+
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Search functionality
+            searchInput.addEventListener('input', (e) => {
+                currentSearchTerm = e.target.value;
+                currentPage = 1;
+                renderBlogPosts();
+            });
+            
+            // Category filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Update current category
+                    currentCategory = button.dataset.category;
+                    currentPage = 1;
+                    renderBlogPosts();
+                });
+            });
+            
+            // View toggle buttons
+            viewToggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    viewToggleButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Update view mode
+                    isGridView = button.id === 'grid-view';
+                    renderBlogPosts();
+                });
+            });
+            
+            // Navigation between sections
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    link.classList.add('active');
+                    
+                    // Hide all sections
+                    pageSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Show the selected section
+                    const sectionId = link.dataset.section;
+                    document.getElementById(sectionId).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Footer navigation links
+            const footerLinks = document.querySelectorAll('.footer-links .nav-link');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav links
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    
+                    // Add active class to corresponding nav link
+                    const sectionId = link.dataset.section;
+                    document.querySelector(`.nav-link[data-section="${sectionId}"]`).classList.add('active');
+                    
+                    // Hide all sections
+                    pageSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Show the selected section
+                    document.getElementById(sectionId).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // In a real application, you would send this data to a server
+                    // For this demo, we'll just show an alert
+                    alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
+                    
+                    // Reset the form
+                    contactForm.reset();
+                });
+            }
+            
+            // Subscribe form
+            const subscribeForm = document.querySelector('.subscribe');
+            if (subscribeForm) {
+                const subscribeInput = subscribeForm.querySelector('input');
+                const subscribeButton = subscribeForm.querySelector('button');
+                
+                subscribeButton.addEventListener('click', () => {
+                    if (subscribeInput.value && subscribeInput.value.includes('@')) {
+                        alert(`Thank you for subscribing with: ${subscribeInput.value}`);
+                        subscribeInput.value = '';
+                    } else {
+                        alert('Please enter a valid email address.');
+                    }
+                });
+            }
+        }
+
+        // Initialize the blog when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initBlog);
+    </script>
+</body>
+</html>
